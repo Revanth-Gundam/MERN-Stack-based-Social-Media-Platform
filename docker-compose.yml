@@ -1,0 +1,23 @@
+services:
+  gr_f:
+    ports:
+      - '3000:3000'
+
+    build:
+      dockerfile: Dockerfile.reactUI
+      context: ./Frontend
+
+    depends_on:
+      - gr_b   
+
+
+  gr_b: 
+    ports: 
+      - '6969:6969' 
+
+    build:
+      dockerfile: Dockerfile.node
+      context: ./Backend
+      
+    env_file:
+      - ./Backend/.env
